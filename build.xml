@@ -1,4 +1,4 @@
-<project name="game2048" basedir=".">
+<project name="game2048" default="jar" basedir=".">
 	
 	 <property name="src.dir" value="src"/>
 	 <property name="build.dir" value="build"/>
