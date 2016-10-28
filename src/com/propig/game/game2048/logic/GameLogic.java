@@ -1,4 +1,4 @@
-package com.propig.game.game2048;
+package com.propig.game.game2048.logic;
 
 import java.util.*;
 

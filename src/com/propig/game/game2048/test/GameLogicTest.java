@@ -1,4 +1,4 @@
-package com.propig.game.game2048;
+package com.propig.game.game2048.test;
 
 
 import java.lang.reflect.Field;
@@ -9,6 +9,9 @@ import java.util.Set;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.propig.game.game2048.logic.GameLogic;
+
 import org.junit.Assert;
 
 

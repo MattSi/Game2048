@@ -7,6 +7,11 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
+import com.propig.game.game2048.logic.GameLogic;
+import com.propig.game.game2048.view.Board;
+import com.propig.game.game2048.view.JBestScorePanel;
+import com.propig.game.game2048.view.JScorePanel;
+
 public class GameSwing extends JFrame {
 
 	/**
@@ -27,7 +32,7 @@ public class GameSwing extends JFrame {
 		// Init information bar
 		logic = new GameLogic();
 		board = new Board(logic);
-		
+
 		JPanel infoPanel = new JPanel();
 		infoPanel.setLayout(new GridLayout(1, 2, 10, 10));
 
@@ -49,10 +54,10 @@ public class GameSwing extends JFrame {
 		bestScore.setBackground(Color.lightGray);
 		bestScore.setForeground(Color.white);
 		bestScore.setOpaque(true);
-		
+
 		board.addListener(currScore);
 		board.addListener(bestScore);
-		
+
 		infoRightPanel.add(bestScore);
 		infoRightPanel.add(currScore);
 
@@ -63,7 +68,6 @@ public class GameSwing extends JFrame {
 		add(infoPanel, BorderLayout.NORTH);
 		add(board, BorderLayout.CENTER);
 		pack();
-
 	}
 
 	private void createMenuBar() {
@@ -77,18 +81,13 @@ public class GameSwing extends JFrame {
 		newgameItem.setMnemonic(KeyEvent.VK_N);
 		newgameItem.setToolTipText("Start a new game.");
 		newgameItem.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				board.resetGame();
 			}
 		});
-		
-		
-		
-		
-		
+
 		JMenuItem exitItem = new JMenuItem("Exit");
 		exitItem.setMnemonic(KeyEvent.VK_E);
 		exitItem.setToolTipText("Exit application");
