@@ -4,6 +4,7 @@ import java.util.*;
 
 public class GameLogic {
 
+	private static int goal = 2048;
 	private int boardLength = 4;
 	private int[][] board = null;
 	private int[][] lastBoard = null;
@@ -97,8 +98,8 @@ public class GameLogic {
 	private int getNextNumber() {
 		int rndNumber = random.nextInt(10);
 		if (rndNumber < 8)
-			return 2;
-		return 4;
+			return 512;
+		return 1024;
 	}
 
 	public void putNumber() {
@@ -144,7 +145,9 @@ public class GameLogic {
 			for(int j=0; j<boardLength; j++){
 				if(lastBoard[i][j] != board[i][j]){
 					isMoved = true;
-					break;
+				}
+				if(board[i][j] == goal){
+					got2048 = true;
 				}
 			}
 		}

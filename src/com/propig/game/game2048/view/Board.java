@@ -61,7 +61,6 @@ public class Board extends JPanel {
 		if (listener == null) {
 			return;
 		}
-//		ScoreEventObject eventObject = new ScoreEventObject(this, score);
 
 		eventObject.setScore(score);
 		notifyAllListener(eventObject);
@@ -234,23 +233,26 @@ public class Board extends JPanel {
 		boolean isGameOver = logic.isGameOver();
 		boolean isSuccess = logic.gotSuccess();
 
+		doOperation(logic.getScore());
 		if (!isGameOver && !isSuccess) {
-			doOperation(logic.getScore());
 			logic.putNumber();
+			repaint();
 
 		} else {
 			if (isGameOver) {
 				JOptionPane.showMessageDialog(new JFrame(), "Failed, Please try again.", "Game 2048",
 						JOptionPane.INFORMATION_MESSAGE);
 			} else {
+				repaint();
 				// means you got the goal.
 				JOptionPane.showMessageDialog(new JFrame(), "Congratulation! You got 2048!", "Game 2048",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 
+			
 			resetGame();
 		}
-		repaint();
+		
 
 		if (logic.isGameOver()) {
 			JOptionPane.showMessageDialog(new JFrame(), "Failed, Please try again.", "Game 2048",

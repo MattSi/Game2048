@@ -15,7 +15,8 @@ public class BlockColor {
 			{new Color(237,204, 97), new Color(249, 246, 242) },
 			{new Color(237,200, 80), new Color(249, 246, 242) }, // 512
 			{new Color(237,197, 63), new Color(249, 246, 242) }, // 1024
-			{new Color(237,197, 46), new Color(249, 246, 242) }  // 2048
+			{new Color(237,197, 46), new Color(249, 246, 242) },   // 2048
+			{new Color(237,197, 46), new Color(249, 246, 242) }   // 2048
 	}; 
 	public static Color getBlockColor(int number, boolean isBackground){		
 		if(isBackground){
