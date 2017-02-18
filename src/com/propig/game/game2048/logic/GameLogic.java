@@ -98,8 +98,8 @@ public class GameLogic {
 	private int getNextNumber() {
 		int rndNumber = random.nextInt(10);
 		if (rndNumber < 8)
-			return 512;
-		return 1024;
+			return 2;
+		return 4;
 	}
 
 	public void putNumber() {
