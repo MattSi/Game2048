@@ -4,5 +4,5 @@ import java.util.EventListener;
 
 interface ScoreListener extends EventListener {
 
-	public void scoring(ScoreEventObject event);
+	void scoring(ScoreEventObject event);
 }

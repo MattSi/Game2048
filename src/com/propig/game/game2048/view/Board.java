@@ -33,7 +33,6 @@ public class Board extends JPanel {
 	private static final String MOVE_LEFT = "move left";
 	private static final String MOVE_RIGHT = "move right";
 
-	private final int BoardWidth = 4;
 	private final int BoardHeight = 4;
 	private Color background = null;
 	private Color blockBackground = null;
@@ -44,34 +43,23 @@ public class Board extends JPanel {
 
 	public void addListener(ScoreListener item) {
 		if (listener == null) {
-			listener = new HashSet<ScoreListener>();
+			listener = new HashSet<>();
 		}
 
 		listener.add(item);
-	}
-
-	public void moveListener(ScoreListener item) {
-		if (listener == null) {
-			return;
-		}
-		listener.remove(item);
 	}
 
 	private void doOperation(int score) {
 		if (listener == null) {
 			return;
 		}
-//		ScoreEventObject eventObject = new ScoreEventObject(this, score);
-
 		eventObject.setScore(score);
 		notifyAllListener(eventObject);
 	}
 
 	private void notifyAllListener(ScoreEventObject eventObject) {
-		Iterator<ScoreListener> iterator = listener.iterator();
 
-		while (iterator.hasNext()) {
-			ScoreListener listener = iterator.next();
+		for (ScoreListener listener : listener) {
 			listener.scoring(eventObject);
 		}
 	}
@@ -100,8 +88,8 @@ public class Board extends JPanel {
 		Dimension size = getSize();
 		int gap = 5; // pixes
 		int intGap = 5; // pixes
-		int backgroundLength = 0;
-		int internalBackLength = 0;
+		int backgroundLength;
+		int internalBackLength;
 
 		// prepare the square background
 		if (size.getWidth() > size.getHeight()) {
@@ -118,7 +106,8 @@ public class Board extends JPanel {
 		internalBackLength = (backgroundLength - (BoardHeight + 1) * intGap) / BoardHeight;
 		g.setColor(blockBackground);
 		for (int yy = 0; yy < logic.getBoardLength(); yy++) {
-			for (int xx = 0; xx < BoardWidth; xx++) {
+			int boardWidth = 4;
+			for (int xx = 0; xx < boardWidth; xx++) {
 				int number = logic.getItemOfBoard(yy, xx);
 
 				if (number == 0) {
@@ -144,8 +133,7 @@ public class Board extends JPanel {
 	}
 
 	private int getNumberToDisplay(int num) {
-		int index = (int) (Math.log((double) num) / Math.log((2.0d)));
-		return index;
+		return (int) (Math.log((double) num) / Math.log((2.0d)));
 	}
 
 	private void drawString(Graphics g, String str, int xPos, int yPos, int width) {
@@ -234,8 +222,8 @@ public class Board extends JPanel {
 		boolean isGameOver = logic.isGameOver();
 		boolean isSuccess = logic.gotSuccess();
 
+		doOperation(logic.getScore());
 		if (!isGameOver && !isSuccess) {
-			doOperation(logic.getScore());
 			logic.putNumber();
 
 		} else {

@@ -112,12 +112,10 @@ public class GameLogic {
 	}
 
 	public boolean move(MoveDirection md) {
-		int currentScore = 0;
+		int currentScore;
 		isMoved = false;
 		for(int i = 0; i< boardLength; i++){
-			for(int j = 0; j<boardLength; j++){
-				lastBoard[i][j] = board[i][j];
-			}
+			System.arraycopy(board[i], 0, lastBoard[i], 0, boardLength);
 		}
 		switch (md) {
 		case LEFT:
