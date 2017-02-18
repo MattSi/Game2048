@@ -1,25 +1,14 @@
 package com.propig.game.game2048.view;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
+import com.propig.game.game2048.logic.GameLogic;
+import com.propig.game.game2048.logic.MoveDirection;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.geom.Rectangle2D;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
-
-import javax.swing.AbstractAction;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.KeyStroke;
-
-import com.propig.game.game2048.logic.GameLogic;
-import com.propig.game.game2048.logic.MoveDirection;
 
 public class Board extends JPanel {
 
@@ -33,7 +22,6 @@ public class Board extends JPanel {
 	private static final String MOVE_LEFT = "move left";
 	private static final String MOVE_RIGHT = "move right";
 
-	private final int BoardHeight = 4;
 	private Color background = null;
 	private Color blockBackground = null;
 	private GameLogic logic = null;
@@ -103,7 +91,8 @@ public class Board extends JPanel {
 		g.fillRect(x, y, backgroundLength, backgroundLength);
 
 		// prepare blocks that contain numbers
-		internalBackLength = (backgroundLength - (BoardHeight + 1) * intGap) / BoardHeight;
+		int boardHeight = 4;
+		internalBackLength = (backgroundLength - (boardHeight + 1) * intGap) / boardHeight;
 		g.setColor(blockBackground);
 		for (int yy = 0; yy < logic.getBoardLength(); yy++) {
 			int boardWidth = 4;
