@@ -31,9 +31,6 @@
 	</target>
 	
 	<target name="run" depends="jar">
-		<java jar="${jar.dir}/${ant.project.name}.jar" fork="true">
-			<path refid="classpath"/>
-			<path location="${jar.dir}/${ant.project.name}.jar"/>	
-		</java>
+		<java jar="${jar.dir}/${ant.project.name}.jar" fork="true" spawn="true" />
 	</target>
 </project>
