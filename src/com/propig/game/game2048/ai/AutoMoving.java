@@ -8,25 +8,36 @@ import com.propig.game.game2048.view.Board;
  * Created by msi on 2017/2/20.
  */
 public abstract class AutoMoving {
-    private int steps;
+    protected int steps;
+
+    public boolean isRunning() {
+        return isRunning;
+    }
+
+    public void setRunning(boolean running) {
+        isRunning = running;
+    }
+
+    protected boolean isRunning;
 
     public int getSteps() {
         return steps;
     }
 
-    private GameLogic logic;
-    private Board board;
+    protected GameLogic logic;
+    protected Board board;
 
     public AutoMoving(Board board, GameLogic logic) {
         this.steps = 0;
         this.logic = logic;
         this.board = board;
+        this.isRunning = false;
         if (this.logic == null || this.board == null) {
             throw new RuntimeException("Init Error, please re-start this application.");
         }
     }
 
-    public abstract void doMove(MoveDirection direction);
+    public abstract void play();
 
     public abstract boolean canMove(MoveDirection direction);
 
