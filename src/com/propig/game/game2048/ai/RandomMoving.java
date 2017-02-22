@@ -16,8 +16,9 @@ public class RandomMoving extends AutoMoving {
     }
 
     @Override
-    public void play()  {
-        this.isRunning = true;
+    public void play() {
+        if (!isRunning)
+            return;
         Random rnd = new Random();
         /**
          * 1. generate a random number between 0, 3
@@ -25,26 +26,28 @@ public class RandomMoving extends AutoMoving {
          * 3. check whether this direction is available
          */
         MoveDirection direction;
-        switch (rnd.nextInt(4)) {
-            case 0:
-                direction = MoveDirection.DOWN;
+        while (true) {
+            switch (rnd.nextInt(4)) {
+                case 0:
+                    direction = MoveDirection.DOWN;
+                    break;
+                case 1:
+                    direction = MoveDirection.LEFT;
+                    break;
+                case 2:
+                    direction = MoveDirection.RIGHT;
+                    break;
+                default:
+                    direction = MoveDirection.UP;
+                    break;
+            }
+            if (logic.move(direction)) {
+                board.moveAction();
                 break;
-            case 1:
-                direction = MoveDirection.LEFT;
-                break;
-            case 2:
-                direction = MoveDirection.RIGHT;
-                break;
-            default:
-                direction = MoveDirection.UP;
-                break;
+            }
         }
 
-        if(logic.move(direction)){
-            board.moveAction();
-        }
-
-        if (logic.isGameOver() || logic.gotSuccess()) {
+        if (logic.isGameOver() ) {
             isRunning = false;
         }
     }

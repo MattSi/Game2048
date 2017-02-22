@@ -24,7 +24,7 @@ public class GameSwing extends JFrame implements ActionListener {
         logic = new GameLogic();
         board = new Board(logic);
         randomMoving = new RandomMoving(board, logic);
-        timer = new Timer(300, this);
+        timer = new Timer(50, this);
         setUI();
     }
 
@@ -110,7 +110,11 @@ public class GameSwing extends JFrame implements ActionListener {
         JMenuItem randomItem = new JMenuItem("Random");
         randomItem.setMnemonic(KeyEvent.VK_R);
         randomItem.setToolTipText("Random move");
-        randomItem.addActionListener(e->{
+        randomItem.addActionListener(e -> {
+            if(logic.gotSuccess() || logic.isGameOver()){
+                return;
+            }
+            randomMoving.setRunning(true);
             timer.start();
         });
         menuFile.add(newGameItem);

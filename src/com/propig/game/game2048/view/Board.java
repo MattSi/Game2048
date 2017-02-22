@@ -227,16 +227,11 @@ public class Board extends JPanel {
                 JOptionPane.showMessageDialog(new JFrame(), "Congratulation! You got 2048!", "Game 2048",
                         JOptionPane.INFORMATION_MESSAGE);
             }
-
-
-            resetGame();
         }
-
 
         if (logic.isGameOver()) {
             JOptionPane.showMessageDialog(new JFrame(), "Failed, Please try again.", "Game 2048",
                     JOptionPane.INFORMATION_MESSAGE);
-            resetGame();
             repaint();
         }
     }

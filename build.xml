@@ -2,6 +2,7 @@
 	
 	 <property name="src.dir" value="src"/>
 	 <property name="build.dir" value="build"/>
+	 <property name="bin.dir" value="bin"/>
 	 <property name="classes.dir" value="${build.dir}/classes"/>
 	 <property name="jar.dir"  value="${build.dir}/jar"/>
 	 <property name="lib.dir"  value="libs"/>
@@ -13,6 +14,7 @@
 	
 	<target name="clean">
 		<delete dir="${build.dir}" />
+		<delete dir="${bin.dir}" />
 	</target>
 	
 	<target name="compile" depends="clean">
