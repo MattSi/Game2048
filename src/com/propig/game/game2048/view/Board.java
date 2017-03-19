@@ -11,7 +11,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.Collection;
 import java.util.HashSet;
 
-public class Board extends JPanel {
+public class Board extends JComponent {
 
     /**
      *
@@ -54,7 +54,7 @@ public class Board extends JPanel {
     }
 
     public Board(GameLogic logic) {
-        super(true);
+        //super(true);
         background = new Color(187, 173, 160);
         blockBackground = new Color(205, 193, 180);
 

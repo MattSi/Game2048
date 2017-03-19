@@ -11,7 +11,7 @@ public class Rating {
         return 0.0 * monotonicWeight;
     }
 
-    private static double smooth(int[][] board) {
+    private static double smoothness(int[][] board) {
         return 0.0 * smoothWeight;
     }
 
@@ -25,7 +25,7 @@ public class Rating {
 
     public static double rating(int[][] board) {
         return monotonic(board) +
-                smooth(board) +
+                smoothness(board) +
                 spaceNumber(board) +
                 isoSpaceNumber(board);
     }

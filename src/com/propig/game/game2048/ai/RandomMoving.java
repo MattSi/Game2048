@@ -20,7 +20,7 @@ public class RandomMoving extends AutoMoving {
         if (!isRunning)
             return;
         Random rnd = new Random();
-        /**
+        /*
          * 1. generate a random number between 0, 3
          * 2. a random number maps to a direction
          * 3. check whether this direction is available
