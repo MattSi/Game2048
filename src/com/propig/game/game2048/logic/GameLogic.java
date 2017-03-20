@@ -42,7 +42,7 @@ public class GameLogic implements Cloneable {
     }
 
     public int[][] getBoard() {
-        return board;
+        return clone2dArray(board);
     }
 
     @Override
@@ -110,6 +110,19 @@ public class GameLogic implements Cloneable {
         return got2048;
     }
 
+    public int getNumberOfEmptyCells(){
+        int emptyLength=0;
+
+        for(int i=0; i<boardLength; i++){
+            for(int j=0; j<boardLength; j++){
+                if(board[i][j] == 0){
+                    ++emptyLength;
+                }
+            }
+        }
+
+        return emptyLength;
+    }
     /**
      * Get next available cell, that can be used to put a random number.
      *
