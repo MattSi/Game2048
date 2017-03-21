@@ -22,7 +22,7 @@ public class Minimax {
     }
 
 
-    private static Map<String, Object> alphabeta(GameLogic gameLogic, int depth, int alpha, int beta, Player player) {
+    private static Map<String, Object> alphabeta(GameLogic gameLogic, int depth, int alpha, int beta, Player player) throws CloneNotSupportedException {
 
         Map<String, Object> result = new HashMap<>();
 
@@ -41,7 +41,16 @@ public class Minimax {
                     calClusteringScore(gameLogic.getBoard()));
         } else {
             if (player == Player.HUMAN) {
-
+                bestScore = Integer.MIN_VALUE;
+                for (MoveDirection moveDirection : MoveDirection.values()) {
+                    GameLogic logicNew = (GameLogic) gameLogic.clone();
+                    int currentScore;
+                    if( !logicNew.move(moveDirection)){
+                        continue;
+                    }
+                    currentScore = logicNew.getScore();
+                    Map<String, Object> currentResult = alphabeta(logicNew, depth-1, alpha,beta, Player.COMPUTER);
+                }
             } else {
 
             }
