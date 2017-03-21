@@ -22,11 +22,12 @@ public class Minimax {
     }
 
 
-    private static Map<String, Object> alphabeta(GameLogic gameLogic, int depth, int alpha, int beta, Player player) throws CloneNotSupportedException {
+    private static Map<String, Object> alphabeta(GameLogic gameLogic, int depth, int alpha, int beta, Player player)
+            throws CloneNotSupportedException {
 
         Map<String, Object> result = new HashMap<>();
 
-        MoveDirection direction = null;
+        MoveDirection bestDirection = null;
         int bestScore = 0;
 
         if (gameLogic.isGameOver()) {
@@ -44,20 +45,51 @@ public class Minimax {
                 bestScore = Integer.MIN_VALUE;
                 for (MoveDirection moveDirection : MoveDirection.values()) {
                     GameLogic logicNew = (GameLogic) gameLogic.clone();
-                    int currentScore;
-                    if( !logicNew.move(moveDirection)){
+                    if (!logicNew.move(moveDirection)) {
                         continue;
                     }
-                    currentScore = logicNew.getScore();
-                    Map<String, Object> currentResult = alphabeta(logicNew, depth-1, alpha,beta, Player.COMPUTER);
+                    Map<String, Object> currentResult = alphabeta(logicNew, depth - 1, alpha, beta, Player.COMPUTER);
+                    int currentScore = ((Number) currentResult.get("Score")).intValue();
+                    if (currentScore > alpha) {
+                        alpha = currentScore;
+                        bestDirection = moveDirection;
+                    }
+                    if (beta <= alpha) {
+                        break;
+                    }
                 }
+                bestScore = alpha;
             } else {
+                List<Integer> moves = gameLogic.getEmptyCellIds();
 
+                int[] possibleValues = {2, 4};
+                abortloop:
+                for (Integer cellId : moves) {
+                    for (int value : possibleValues) {
+                        GameLogic newLogic = (GameLogic) gameLogic.clone();
+                        newLogic.putNumber(cellId, value);
+
+                        Map<String, Object> currentResult = alphabeta(newLogic, depth - 1, alpha, beta, Player.HUMAN);
+                        int currentScore = ((Number) currentResult.get("Score")).intValue();
+
+                        if (currentScore < beta) {
+                            beta = currentScore;
+                        }
+                        if (beta <= alpha) {
+                            break abortloop;
+                        }
+                    }
+                }
+
+                bestScore = beta;
+                if (moves.isEmpty()) {
+                    bestScore = 0;
+                }
             }
         }
 
         result.put("Score", bestScore);
-        result.put("Direction", direction);
+        result.put("Direction", bestDirection);
         return result;
     }
 

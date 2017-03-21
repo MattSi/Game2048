@@ -110,12 +110,25 @@ public class GameLogic implements Cloneable {
         return got2048;
     }
 
-    public int getNumberOfEmptyCells(){
-        int emptyLength=0;
+    public List<Integer> getEmptyCellIds() {
+        List<Integer> cellList = new ArrayList<>();
 
-        for(int i=0; i<boardLength; i++){
-            for(int j=0; j<boardLength; j++){
-                if(board[i][j] == 0){
+        for (int i = 0; i < boardLength; i++) {
+            for (int j = 0; j < boardLength; j++) {
+                if (board[i][j] == 0) {
+                    cellList.add(i * boardLength + j);
+                }
+            }
+        }
+        return cellList;
+    }
+
+    public int getNumberOfEmptyCells() {
+        int emptyLength = 0;
+
+        for (int i = 0; i < boardLength; i++) {
+            for (int j = 0; j < boardLength; j++) {
+                if (board[i][j] == 0) {
                     ++emptyLength;
                 }
             }
@@ -123,6 +136,7 @@ public class GameLogic implements Cloneable {
 
         return emptyLength;
     }
+
     /**
      * Get next available cell, that can be used to put a random number.
      *
@@ -164,6 +178,12 @@ public class GameLogic implements Cloneable {
         int row = cellIndex / boardLength;
         int col = cellIndex % boardLength;
         board[row][col] = number;
+    }
+
+    public void putNumber(int cellId, int value) {
+        int row = cellId / boardLength;
+        int col = cellId % boardLength;
+        board[row][col] = value;
     }
 
     public boolean move(MoveDirection md) {
