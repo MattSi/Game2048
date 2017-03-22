@@ -1,5 +1,6 @@
 package com.propig.game.game2048;
 
+import com.propig.game.game2048.ai.MinimaxMoving;
 import com.propig.game.game2048.ai.RandomMoving;
 import com.propig.game.game2048.logic.GameLogic;
 import com.propig.game.game2048.view.Board;
@@ -24,6 +25,8 @@ public class GameSwing extends JFrame implements ActionListener {
         logic = new GameLogic();
         board = new Board(logic);
         randomMoving = new RandomMoving(board, logic);
+        minimaxMoving = new MinimaxMoving(board, logic);
+
         timer = new Timer(50, this);
         setUI();
     }
@@ -32,6 +35,7 @@ public class GameSwing extends JFrame implements ActionListener {
     private GameLogic logic = null;
     private Timer timer = null;
     private RandomMoving randomMoving = null;
+    private MinimaxMoving minimaxMoving = null;
 
     private void createLayout() {
         // Init information bar
@@ -115,11 +119,22 @@ public class GameSwing extends JFrame implements ActionListener {
                 return;
             }
             randomMoving.setRunning(true);
+            //timer.start();
+        });
+        JMenuItem miniMaxItem = new JMenuItem("MiniMax");
+        miniMaxItem.setMnemonic(KeyEvent.VK_R);
+        miniMaxItem.setToolTipText("Minimax with alpha beta pruning");
+        miniMaxItem.addActionListener(e -> {
+            if(logic.gotSuccess() || logic.isGameOver()){
+                return;
+            }
+            minimaxMoving.setRunning(true);
             timer.start();
         });
         menuFile.add(newGameItem);
         menuFile.add(exitItem);
         menuAI.add(randomItem);
+        menuAI.add(miniMaxItem);
         menuHelp.add(aboutItem);
         menuBar.add(menuFile);
         menuBar.add(menuAI);
@@ -150,6 +165,11 @@ public class GameSwing extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        randomMoving.play();
+        // randomMoving.play();
+        try {
+            minimaxMoving.play();
+        } catch (CloneNotSupportedException e1) {
+            e1.printStackTrace();
+        }
     }
 }

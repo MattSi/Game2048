@@ -15,6 +15,9 @@ public class GameLogic implements Cloneable {
     private Random random = null;
     private boolean isMoved = false;
 
+    public boolean isMoved(){
+        return isMoved;
+    }
     public int getLastRandomPut() {
         return lastRandomPut;
     }
@@ -55,12 +58,12 @@ public class GameLogic implements Cloneable {
         return copy;
     }
 
-    public boolean isEqual(int[][] currentBoard, int[][] newBoard) {
+    public boolean isEqual(int[][] newBoard) {
         boolean equal = true;
 
-        for (int i = 0; i < currentBoard.length; i++) {
-            for (int j = 0; j < currentBoard.length; j++) {
-                if (currentBoard[i][j] != newBoard[i][j]) {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                if (board[i][j] != newBoard[i][j]) {
                     equal = false; //The two boards are not same.
                     return equal;
                 }

@@ -27,6 +27,7 @@ public class RandomMoving extends AutoMoving {
          */
         MoveDirection direction;
         while (true) {
+
             switch (rnd.nextInt(4)) {
                 case 0:
                     direction = MoveDirection.DOWN;
@@ -47,7 +48,7 @@ public class RandomMoving extends AutoMoving {
             }
         }
 
-        if (logic.isGameOver() ) {
+        if (logic.isGameOver() || logic.gotSuccess() ) {
             isRunning = false;
         }
     }

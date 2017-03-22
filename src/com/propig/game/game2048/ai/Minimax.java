@@ -15,6 +15,13 @@ public class Minimax {
         HUMAN
     }
 
+    public static MoveDirection findBestMove(GameLogic logic, int depth)
+            throws CloneNotSupportedException {
+        Map<String, Object> result = alphabeta(logic, depth, Integer.MIN_VALUE, Integer.MAX_VALUE, Player.HUMAN);
+
+        return (MoveDirection) result.get("Direction");
+    }
+
     private static int heuristicScore(int actualScore, int numOfEmptyCells, int clusteringScore) {
         int score = (int) (actualScore + Math.log(actualScore) * numOfEmptyCells - clusteringScore);
 
@@ -124,8 +131,8 @@ public class Minimax {
                         }
                     }
                 }
-
-                clusteringScore += sum / numOfNeighbors;
+                if (numOfNeighbors != 0)
+                    clusteringScore += sum / numOfNeighbors;
             }
         }
         return clusteringScore;

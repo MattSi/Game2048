@@ -37,7 +37,7 @@ public abstract class AutoMoving {
         }
     }
 
-    public abstract void play();
+    public abstract void play() throws CloneNotSupportedException;
 
     public abstract boolean canMove(MoveDirection direction);
 
