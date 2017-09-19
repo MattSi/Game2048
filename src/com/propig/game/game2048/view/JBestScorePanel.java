@@ -28,4 +28,5 @@ public class JBestScorePanel extends JLabel implements ScoreListener {
 		}
 	}
 
+
 }

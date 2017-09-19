@@ -41,6 +41,10 @@ public enum Planet {
         return otherMass * surfaceGravity();
     }
 
+    private int gcd(int i, int j){
+        return 0;
+    }
+
     public static void main(String[] args) {
         double mass = 175 / EARTH.surfaceGravity();
         for (Planet planet : Planet.values()) {

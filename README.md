@@ -1,4 +1,5 @@
 # Game2048
-This is a 2048 game written by Java Swing techniques.
+This is a java based 2048 game with AI, you can move blocks with your direction keys, also, you can use
 
-![Screenshot](/img/screenshot.png)
+![Screenshot](img/screenshot.png)
+
