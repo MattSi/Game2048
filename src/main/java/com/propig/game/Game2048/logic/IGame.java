@@ -1,6 +1,6 @@
 package com.propig.game.Game2048.logic;
 
-public interface IGameLogic {
+public interface IGame {
 
     /**
      * Reset or initialize game.
