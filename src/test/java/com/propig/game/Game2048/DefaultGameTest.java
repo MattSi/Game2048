@@ -9,6 +9,8 @@ import org.junit.Test;
 import com.propig.game.Game2048.logic.DefaultGame;
 import com.propig.game.Game2048.logic.IGame;
 
+import java.util.Random;
+
 
 public class DefaultGameTest {
 	
@@ -22,11 +24,19 @@ public class DefaultGameTest {
 	
 	@Test
 	public void testBoardStatus(){
-		long status = 0x2312231223122312L;
+		Random random = new Random();
+
+		long status = 0L;
+		long result = 0L;
+
+		for(int i=0; i<1000000; i++){
+			status = random.nextLong();
+			game.setBoardStatus(status);
+			result = game.getBoardStatus();
+			Assert.assertTrue(status==result);
+		}
+
 		
-		game.setBoardStatus(status);
-		long result = game.getBoardStatus();
-		
-		Assert.assertTrue(status==result);
+
 	}
 }
