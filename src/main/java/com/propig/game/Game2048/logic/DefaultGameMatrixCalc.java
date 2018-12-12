@@ -2,7 +2,7 @@ package com.propig.game.Game2048.logic;
 
 import com.propig.game.Game2048.util.Utils;
 
-public class DefaultGameCalc {
+public class DefaultGameMatrixCalc {
     private static int[][] board;
     private static int[][] preBoard;
     private static int[] emptyCell;
@@ -10,7 +10,7 @@ public class DefaultGameCalc {
     GameConstants gameConst;
 
 
-    public DefaultGameCalc() {
+    public DefaultGameMatrixCalc() {
         gameConst = GameConstants.getInstance();
         board = new int[gameConst.getRow()][gameConst.getCol()];
         preBoard = new int[gameConst.getRow()][gameConst.getCol()];
