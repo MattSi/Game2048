@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2048 (Java Swing)</title>
+  <script src="https://cjrtnc.leaningtech.com/4.2/loader.js"></script>
+  <style>
+    body { margin: 0; background: #faf8ef; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; }
+    #game { width: 400px; height: 500px; }
+    p { color: #776e65; max-width: 400px; text-align: center; }
+  </style>
+</head>
+<body>
+  <p>My Java Swing 2048 with a Minimax AI, running in the browser with CheerpJ. The first load takes about 30 seconds.</p>
+  <div id="game"></div>
+  <script type="module">
+    await cheerpjInit();
+    cheerpjCreateDisplay(-1, -1, document.getElementById("game"));
+    await cheerpjRunMain("com.propig.game.Game2048.GameSwing", "/app/Game2048/Game2048.jar");
+  </script>
+</body>
+</html>
